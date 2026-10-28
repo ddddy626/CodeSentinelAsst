@@ -1,0 +1,13 @@
+rules:
+  - id: codesentinel.web.dynamic-eval
+    message: 动态执行需要可信且受约束的输入来源。
+    languages: [javascript, typescript]
+    severity: WARNING
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: new Function(...)
+  - id: codesentinel.web.inner-html
+    message: 直接写入 innerHTML 时，需要确认内容已安全处理。
+    languages: [javascript, typescript]
+    severity: WARNING
+    pattern: $ELEMENT.innerHTML = $VALUE

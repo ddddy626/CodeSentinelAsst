@@ -1,0 +1,5 @@
+Homepage: centered code composer and language choice
+Sidebar: expandable history and project controls
+History detail: saved code left and report right
+API: owner-only saved source retrieval with no-store
+Test: source access is owner-only

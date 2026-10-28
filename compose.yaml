@@ -1,0 +1,55 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: codesentinel
+      MYSQL_USER: codesentinel
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      retries: 20
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 10
+  api:
+    build: ./backend
+    environment: &backend_env
+      CODESENTINEL_DATABASE_URL: mysql://codesentinel:${MYSQL_PASSWORD}@mysql:3306/codesentinel
+      CODESENTINEL_REDIS_URL: redis://redis:6379/0
+      CODESENTINEL_LLM_URL: ${CODESENTINEL_LLM_URL:-}
+      CODESENTINEL_LLM_KEY: ${CODESENTINEL_LLM_KEY:-}
+      CODESENTINEL_LLM_MODEL: ${CODESENTINEL_LLM_MODEL:-}
+      CODESENTINEL_SEMGREP_RULES: /app/rules/python-v1.yaml
+      SEMGREP_SEND_METRICS: "off"
+      CODESENTINEL_BUILD_VERSION: v1-5
+    depends_on:
+      mysql: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  worker:
+    build: ./backend
+    command: ["python", "-m", "app.worker"]
+    environment: *backend_env
+    volumes:
+      - knowledge_data:/app/data/knowledge
+    depends_on:
+      mysql: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  web:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on: [api]
+volumes:
+  mysql_data:
+  redis_data:
+  knowledge_data:

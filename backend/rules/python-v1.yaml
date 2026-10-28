@@ -1,0 +1,8 @@
+rules:
+  - id: codesentinel.python.dynamic-exec
+    message: 动态执行需要可信且受约束的输入来源。
+    languages: [python]
+    severity: WARNING
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: exec(...)

@@ -1,0 +1,19 @@
+updated	README.md
+updated	compose.yaml
+updated	backend\Dockerfile
+updated	backend\pyproject.toml
+updated	backend\uv.lock
+updated	backend\requirements.txt
+updated	backend\app\config.py
+added	backend\app\knowledge.py
+updated	backend\app\orchestrator.py
+updated	backend\app\review.py
+updated	backend\app\schemas.py
+updated	backend\app\prompts\architect.md
+updated	backend\app\prompts\review.md
+added	backend\knowledge\README.md
+added	backend\knowledge\cards.jsonl
+added	backend\tests\test_knowledge.py
+updated	frontend\src\App.tsx
+updated	frontend\src\types.ts
+updated backend\knowledge\cards.jsonl source metadata

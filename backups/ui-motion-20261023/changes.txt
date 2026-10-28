@@ -1,0 +1,4 @@
+App.tsx: brand mark, scan state, line navigation
+styles.css: visual polish, focus/scan/sidebar motion, reduced-motion
+styles.css: typography fallback and full-row target highlight
+styles.css: compact mobile code panel

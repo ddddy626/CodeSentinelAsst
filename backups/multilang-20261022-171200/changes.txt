@@ -1,0 +1,18 @@
+updated backend/app/schemas.py
+updated backend/app/review.py
+updated backend/app/tools.py
+updated backend/app/context.py
+updated backend/app/orchestrator.py
+updated backend/app/worker.py
+updated backend/app/llm.py
+updated backend/app/config.py
+updated backend/app/prompts/review.md
+updated backend/app/prompts/architect.md
+updated backend/tests/test_contract_context.py
+added backend/tests/test_multilang.py
+added backend/rules/web-v1.yaml
+updated frontend/src/App.tsx
+updated frontend/src/styles.css
+updated README.md
+updated backend/tests/test_multilang.py with API to worker integration test
+updated DESIGN.md

@@ -1,0 +1,158 @@
+[
+  {
+    "id": "direct-input",
+    "origin": "curated synthetic",
+    "source": "eval(input())\n",
+    "expected": [
+      {
+        "line": 1,
+        "severity": "S1",
+        "triggered": true
+      }
+    ]
+  },
+  {
+    "id": "assigned-input",
+    "origin": "curated synthetic",
+    "source": "payload = input()\ncode = payload\neval(code)\n",
+    "expected": [
+      {
+        "line": 3,
+        "severity": "S1",
+        "triggered": true
+      }
+    ]
+  },
+  {
+    "id": "function-argument",
+    "origin": "curated synthetic",
+    "source": "def run(code):\n    eval(code)\nrun(input())\n",
+    "expected": [
+      {
+        "line": 2,
+        "severity": "S1",
+        "triggered": true
+      }
+    ]
+  },
+  {
+    "id": "two-function-chain",
+    "origin": "curated synthetic",
+    "source": "def run(code):\n    eval(code)\ndef bridge(value):\n    run(value)\nbridge(input())\n",
+    "expected": [
+      {
+        "line": 2,
+        "severity": "S1",
+        "triggered": true
+      }
+    ]
+  },
+  {
+    "id": "keyword-argument",
+    "origin": "curated synthetic",
+    "source": "def run(command):\n    exec(command)\nrun(command=input())\n",
+    "expected": [
+      {
+        "line": 2,
+        "severity": "S1",
+        "triggered": true
+      }
+    ]
+  },
+  {
+    "id": "unknown-caller",
+    "origin": "curated synthetic",
+    "source": "def run(code):\n    eval(code)\n",
+    "expected": [
+      {
+        "line": 2,
+        "severity": "S2",
+        "triggered": false
+      }
+    ]
+  },
+  {
+    "id": "uncalled-input",
+    "origin": "curated synthetic",
+    "source": "def run():\n    eval(input())\n",
+    "expected": [
+      {
+        "line": 2,
+        "severity": "S2",
+        "triggered": false
+      }
+    ]
+  },
+  {
+    "id": "constant-expression",
+    "origin": "curated synthetic",
+    "source": "eval('1 + 1')\n",
+    "expected": []
+  },
+  {
+    "id": "attribute-method",
+    "origin": "curated synthetic",
+    "source": "client.eval(input())\n",
+    "expected": []
+  },
+  {
+    "id": "shadowed-eval",
+    "origin": "curated synthetic",
+    "source": "def eval(value):\n    return value\neval(input())\n",
+    "expected": []
+  },
+  {
+    "id": "overwritten-input",
+    "origin": "curated synthetic",
+    "source": "payload = input()\npayload = '1 + 1'\neval(payload)\n",
+    "expected": [
+      {
+        "line": 3,
+        "severity": "S2",
+        "triggered": false
+      }
+    ]
+  },
+  {
+    "id": "unreachable-branch",
+    "origin": "curated synthetic",
+    "source": "if False:\n    eval(input())\n",
+    "expected": []
+  },
+  {
+    "id": "long-direct",
+    "origin": "curated synthetic",
+    "source": "import math\npadding_0 = 0\npadding_1 = 1\npadding_2 = 2\npadding_3 = 3\npadding_4 = 4\npadding_5 = 5\npadding_6 = 6\npadding_7 = 7\npadding_8 = 8\npadding_9 = 9\npadding_10 = 10\npadding_11 = 11\npadding_12 = 12\npadding_13 = 13\npadding_14 = 14\npadding_15 = 15\npadding_16 = 16\npadding_17 = 17\npadding_18 = 18\npadding_19 = 19\npadding_20 = 20\npadding_21 = 21\npadding_22 = 22\npadding_23 = 23\npadding_24 = 24\npadding_25 = 25\npadding_26 = 26\npadding_27 = 27\npadding_28 = 28\npadding_29 = 29\npadding_30 = 30\npadding_31 = 31\npadding_32 = 32\npadding_33 = 33\npadding_34 = 34\npadding_35 = 35\npadding_36 = 36\npadding_37 = 37\npadding_38 = 38\npadding_39 = 39\npadding_40 = 40\npadding_41 = 41\npadding_42 = 42\npadding_43 = 43\npadding_44 = 44\neval(input())\n",
+    "expected": [
+      {
+        "line": 47,
+        "severity": "S1",
+        "triggered": true
+      }
+    ]
+  },
+  {
+    "id": "long-clean",
+    "origin": "curated synthetic",
+    "source": "import math\npadding_0 = 0\npadding_1 = 1\npadding_2 = 2\npadding_3 = 3\npadding_4 = 4\npadding_5 = 5\npadding_6 = 6\npadding_7 = 7\npadding_8 = 8\npadding_9 = 9\npadding_10 = 10\npadding_11 = 11\npadding_12 = 12\npadding_13 = 13\npadding_14 = 14\npadding_15 = 15\npadding_16 = 16\npadding_17 = 17\npadding_18 = 18\npadding_19 = 19\npadding_20 = 20\npadding_21 = 21\npadding_22 = 22\npadding_23 = 23\npadding_24 = 24\npadding_25 = 25\npadding_26 = 26\npadding_27 = 27\npadding_28 = 28\npadding_29 = 29\npadding_30 = 30\npadding_31 = 31\npadding_32 = 32\npadding_33 = 33\npadding_34 = 34\npadding_35 = 35\npadding_36 = 36\npadding_37 = 37\npadding_38 = 38\npadding_39 = 39\npadding_40 = 40\npadding_41 = 41\npadding_42 = 42\npadding_43 = 43\npadding_44 = 44\nprint(math.pi)\n",
+    "expected": []
+  },
+  {
+    "id": "long-cross-function",
+    "origin": "curated synthetic",
+    "source": "def run(code):\n    eval(code)\npadding_0 = 0\npadding_1 = 1\npadding_2 = 2\npadding_3 = 3\npadding_4 = 4\npadding_5 = 5\npadding_6 = 6\npadding_7 = 7\npadding_8 = 8\npadding_9 = 9\npadding_10 = 10\npadding_11 = 11\npadding_12 = 12\npadding_13 = 13\npadding_14 = 14\npadding_15 = 15\npadding_16 = 16\npadding_17 = 17\npadding_18 = 18\npadding_19 = 19\npadding_20 = 20\npadding_21 = 21\npadding_22 = 22\npadding_23 = 23\npadding_24 = 24\npadding_25 = 25\npadding_26 = 26\npadding_27 = 27\npadding_28 = 28\npadding_29 = 29\npadding_30 = 30\npadding_31 = 31\npadding_32 = 32\npadding_33 = 33\npadding_34 = 34\npadding_35 = 35\npadding_36 = 36\npadding_37 = 37\npadding_38 = 38\npadding_39 = 39\npadding_40 = 40\npadding_41 = 41\npadding_42 = 42\npadding_43 = 43\npadding_44 = 44\nrun(input())\n",
+    "expected": [
+      {
+        "line": 2,
+        "severity": "S1",
+        "triggered": true
+      }
+    ]
+  },
+  {
+    "id": "long-unreachable",
+    "origin": "curated synthetic",
+    "source": "if False:\n    eval(input())\npadding_0 = 0\npadding_1 = 1\npadding_2 = 2\npadding_3 = 3\npadding_4 = 4\npadding_5 = 5\npadding_6 = 6\npadding_7 = 7\npadding_8 = 8\npadding_9 = 9\npadding_10 = 10\npadding_11 = 11\npadding_12 = 12\npadding_13 = 13\npadding_14 = 14\npadding_15 = 15\npadding_16 = 16\npadding_17 = 17\npadding_18 = 18\npadding_19 = 19\npadding_20 = 20\npadding_21 = 21\npadding_22 = 22\npadding_23 = 23\npadding_24 = 24\npadding_25 = 25\npadding_26 = 26\npadding_27 = 27\npadding_28 = 28\npadding_29 = 29\npadding_30 = 30\npadding_31 = 31\npadding_32 = 32\npadding_33 = 33\npadding_34 = 34\npadding_35 = 35\npadding_36 = 36\npadding_37 = 37\npadding_38 = 38\npadding_39 = 39\npadding_40 = 40\npadding_41 = 41\npadding_42 = 42\npadding_43 = 43\npadding_44 = 44\n",
+    "expected": []
+  }
+]

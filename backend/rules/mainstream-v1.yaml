@@ -1,0 +1,60 @@
+rules:
+  - id: codesentinel.java.process-exec
+    message: 启动外部进程时应核查命令及参数来源。
+    languages: [java]
+    severity: WARNING
+    pattern-either:
+      - pattern: Runtime.getRuntime().exec(...)
+      - pattern: new ProcessBuilder(...)
+  - id: codesentinel.java.spring-wildcard-cors
+    message: Spring 跨域来源配置为通配符时应核查访问边界。
+    languages: [java]
+    severity: WARNING
+    pattern-regex: '@CrossOrigin\s*\(\s*(?:origins\s*=\s*)?"\*"\s*\)'
+  - id: codesentinel.go.process-exec
+    message: 启动外部进程时应核查命令及参数来源。
+    languages: [go]
+    severity: WARNING
+    pattern: exec.Command(...)
+  - id: codesentinel.c.system-call
+    message: 调用系统命令时应核查参数来源。
+    languages: [c]
+    severity: WARNING
+    pattern: system(...)
+  - id: codesentinel.cpp.system-call
+    message: 调用系统命令时应核查参数来源。
+    languages: [cpp]
+    severity: WARNING
+    pattern-either:
+      - pattern: system(...)
+      - pattern: std::system(...)
+  - id: codesentinel.csharp.process-start
+    message: 启动外部进程时应核查命令及参数来源。
+    languages: [csharp]
+    severity: WARNING
+    pattern: Process.Start(...)
+  - id: codesentinel.rust.process-command
+    message: 启动外部进程时应核查命令及参数来源。
+    languages: [rust]
+    severity: WARNING
+    pattern: Command::new(...)
+  - id: codesentinel.php.dynamic-eval
+    message: 动态执行代码时应核查输入来源。
+    languages: [php]
+    severity: WARNING
+    pattern: eval(...)
+  - id: codesentinel.ruby.dynamic-eval
+    message: 动态执行代码时应核查输入来源。
+    languages: [ruby]
+    severity: WARNING
+    pattern: eval(...)
+  - id: codesentinel.kotlin.process-exec
+    message: 启动外部进程时应核查命令及参数来源。
+    languages: [kotlin]
+    severity: WARNING
+    pattern: Runtime.getRuntime().exec(...)
+  - id: codesentinel.swift.force-try
+    message: 强制 try 可能在错误发生时终止程序，应核查错误处理。
+    languages: [swift]
+    severity: WARNING
+    pattern: try! $EXPR
